@@ -18,7 +18,7 @@ namespace Know_How_Computer
 
     class Command
     {
-
+        public int position;
         public int data;
         CType commands;
 

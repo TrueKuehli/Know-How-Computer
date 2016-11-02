@@ -14,12 +14,22 @@ namespace Know_How_Computer
     {
 
         public static int[] Register = new int[8];
-
+        List<Command> Commands = new List<Command>();
 
         public Form1()
         {
             InitializeComponent();
         }
+
+
+
+
+
+
+
+
+
+
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {

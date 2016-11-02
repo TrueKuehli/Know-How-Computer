@@ -27,10 +27,7 @@ namespace Know_How_Computer
 
         }
         
-        public Form1()
-        {
-            InitializeComponent();
-        }
+       
 
 
         private void Form1_Resize(object sender, EventArgs e)

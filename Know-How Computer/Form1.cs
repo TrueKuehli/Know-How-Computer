@@ -26,32 +26,7 @@ namespace Know_How_Computer
         }
 
         
-        public void RunStep()
-        {
-            switch (Commands[pc].command)
-            {
-                case CType.Inc:
-                    Register[Commands[pc].data] += 1;
-                    pc++;
-                    break;
-                case CType.Dec:
-                    Register[Commands[pc].data] -= 1;
-                    pc++;
-                    break;
-                case CType.IfZero:
-                    if (Register[Commands[pc].data] == 0)
-                        pc += 2;
-                    else
-                        pc++;
-                    break;
-                case CType.Stop:
-                    Environment.Exit(0);
-                    break;
-
-            }
-            
-
-        }
+        
 
         public void initialzeRegister()
         {

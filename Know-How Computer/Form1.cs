@@ -16,5 +16,15 @@ namespace Know_How_Computer
         {
             InitializeComponent();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            Know_How_Computer.Form1.ActiveForm.Width = (1800 / 1745) * Know_How_Computer.Form1.ActiveForm.Height;
+        }
     }
 }

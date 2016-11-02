@@ -8,19 +8,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
+
 namespace Know_How_Computer
 {
+    
     public partial class Form1 : Form
     {
+        public Button[] CommandPresets = new Button[5];
         public Form1()
         {
             InitializeComponent();
-        }
-
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            Know_How_Computer.Form1.ActiveForm.Width = (1800 / 1745) * Know_How_Computer.Form1.ActiveForm.Height;
         }
 
         private void panel1_DragEnter(object sender, DragEventArgs e)
@@ -31,14 +29,9 @@ namespace Know_How_Computer
                 e.Effect = DragDropEffects.None;
         }
 
-        private void panel1_DragDrop(object sender, DragEventArgs e)
-        {
-
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
-            Button[] CommandPresets = new Button[5];
+            
             for (int i = 0; i < 5; i++)
             {
                 CommandPresets[i] = new Button();
@@ -47,11 +40,14 @@ namespace Know_How_Computer
                     DragDropEffects.Copy | DragDropEffects.Move);
 
                 CommandPresets[i].MouseDown += new MouseEventHandler(MouseDrag);
+
                 CommandPresets[i].Width = 100;
-                CommandPresets[i].Height = 100;
-                CommandPresets[i].Location = new Point(100*i,20);
-                CommandPresets[i].BackColor = Color.Red;
-                CommandPresets[i].ForeColor = Color.Blue;
+                CommandPresets[i].Height = 50;
+                CommandPresets[i].Left = 575;
+                CommandPresets[i].Top = 55*i+10;
+
+                CommandPresets[i].BackColor = System.Drawing.ColorTranslator.FromHtml("#EEEEEE");
+                CommandPresets[i].ForeColor = System.Drawing.ColorTranslator.FromHtml("#1F1F1F");
                 CommandPresets[i].Font = new Font("Arial", 16);
                 CommandPresets[i].Name = "CommandPreset " + i;
 
@@ -72,9 +68,16 @@ namespace Know_How_Computer
                 DragDropEffects.Copy | DragDropEffects.Move);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void Form1_Resize(object sender, EventArgs e)
         {
-            
+            for (int i = 0; i < 5; i++)
+            {
+                CommandPresets[i].Width = Form1.ActiveForm.Width * 100 / 702;
+                CommandPresets[i].Height = Form1.ActiveForm.Height * 50 / 703;
+                CommandPresets[i].Top = Form1.ActiveForm.Height * 55 * i / 703 + (10 * Form1.ActiveForm.Height / 703);
+                CommandPresets[i].Left = Form1.ActiveForm.Width * 575 / 702;
+            }
         }
     }
 }

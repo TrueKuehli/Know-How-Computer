@@ -7,9 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Know_How_Computer;
 
 namespace Know_How_Computer
 {
+   
+
     public partial class Form1 : Form
     {
         public static int[] Register = new int[8];
@@ -24,7 +27,27 @@ namespace Know_How_Computer
         
         public void RunStep()
         {
+            switch (Commands[pc].command)
+            {
+                case CType.Inc:
+                    Register[Commands[pc].data] += 1;
+                    pc++;
+                    break;
+                case CType.Dec:
+                    Register[Commands[pc].data] -= 1;
+                    break;
+                    pc++;
+                case CType.IfZero:
+                    if (Register[Commands[pc].data] == 0)
+                        pc += 2;
+                    else
+                        pc++;
+                    break;
+                case CType.Stop:
+                    Environment.Exit(0);
+                    break;
 
+            }
         }
         
        

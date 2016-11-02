@@ -6,51 +6,29 @@ using System.Threading.Tasks;
 
 namespace Know_How_Computer
 {
+    enum CType
+    {
+        Inc,
+        Dec,
+        IfZero,
+        Stop
+    }
+
+    
+
     class Command
     {
+
         public int data;
+        CType commands;
 
-       
-
-
-    }
-
-    class Inc : Command
-    {
-        public Inc(int data)
+        public Command(CType command, int data)
         {
             this.data = data;
+            this.commands = command;
         }
-        //public int Execute()
-        //{
-
-        //}
-    }
-    class Dec : Command
-    {
-        public Dec(int data)
-        {
-            this.data = data;
-        }
-    }
-    class IfZero : Command
-    {
-        public IfZero(int data)
-        {
-            this.data = data;
-        }
-    }
-    class Jump : Command
-    {
-        public Jump(int data)
-        {
-            this.data = data;
-        }
-    }
-    class Stop : Command
-    {
-        public Stop()
-        {  }
 
     }
+
+   
 }

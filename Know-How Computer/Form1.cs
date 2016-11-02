@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Know_How_Computer;
 
-
-
 namespace Know_How_Computer
 {
+     
+
     public partial class Form1 : Form
     {
         public static int[] Register = new int[8];
@@ -49,9 +49,18 @@ namespace Know_How_Computer
                     break;
 
             }
+            
+
         }
-        
-       
+
+        public void initialzeRegister()
+        {
+
+        }
+
+
+
+
 
 
         private void Form1_Resize(object sender, EventArgs e)

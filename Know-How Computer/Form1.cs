@@ -36,8 +36,8 @@ namespace Know_How_Computer
                     break;
                 case CType.Dec:
                     Register[Commands[pc].data] -= 1;
-                    break;
                     pc++;
+                    break;
                 case CType.IfZero:
                     if (Register[Commands[pc].data] == 0)
                         pc += 2;
@@ -61,12 +61,6 @@ namespace Know_How_Computer
 
 
 
-
-
-        private void Form1_Resize(object sender, EventArgs e)
-        {
-            Know_How_Computer.Form1.ActiveForm.Width = (1800 / 1745) * Know_How_Computer.Form1.ActiveForm.Height;
-        }
 
         private void panel1_DragEnter(object sender, DragEventArgs e)
         {

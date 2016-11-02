@@ -32,7 +32,7 @@ namespace Know_How_Computer
             
         }
 
-        public int Run()
+        public void Run()
         {
             switch (command)
             {

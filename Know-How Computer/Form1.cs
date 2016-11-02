@@ -15,14 +15,18 @@ namespace Know_How_Computer
 
         public static int[] Register = new int[8];
         List<Command> Commands = new List<Command>();
+        public static int pc =  1; 
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        
+        public void RunStep()
+        {
 
-
+        }
 
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Know_How_Computer
 {
-    enum CType
+    public enum CType
     {
         Inc,
         Dec,
@@ -20,12 +20,12 @@ namespace Know_How_Computer
     {
         public int position;
         public int data;
-        CType commands;
+        public CType command;
 
         public Command(CType command, int data)
         {
             this.data = data;
-            this.commands = command;
+            this.command = command;
         }
 
     }

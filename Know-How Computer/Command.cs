@@ -23,6 +23,7 @@ namespace Know_How_Computer
         public int position;
         public int data;
         public CType command;
+        public bool disabled = false;
 
         public Command(CType command, int data)
         {

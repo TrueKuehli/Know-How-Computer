@@ -38,9 +38,47 @@ namespace Know_How_Computer
             return value;
         }
         
+        public void addCommand(CType c,int d)
+        {
+            Commands.Add(new Command(c,d));
+        }
 
         public void initialzeRegister()
         {
+            Random zufall = new Random();
+            for (int i = 0; i <= Register.Length; i++)
+                Register[i] = zufall.Next(0,32);
+        }
+
+        public void removeCommand(int pos)
+        {
+            Commands[posID(pos)].disabled = true;
+        }
+
+        public  void readfile()
+        {
+            string[] lines = System.IO.File.ReadAllLines("../../programm.txt");
+            string[] tokens = new string[2];
+            int i = 0;
+            foreach (string line in lines)
+            {
+                tokens = line.Split(' ');
+                switch(tokens[0])
+                {
+                    case "+":
+                        addCommand(CType.Inc, Int32.Parse(tokens[1]));
+                        break;
+                    case "-":
+                        addCommand(CType.Dec, Int32.Parse(tokens[1]));
+                        break;
+                    case "0":
+                        addCommand(CType.IfZero, Int32.Parse(tokens[1]));
+                        break;
+                    case "stop":
+                        addCommand(CType.Stop, 0);
+                        break;
+                }
+            }
 
         }
 
@@ -116,6 +154,7 @@ namespace Know_How_Computer
             CommandPresets[3].Text = "0";
             CommandPresets[4].Text = "Stop";
 
+            TransparencyKey = Color.Transparent;
             for (int i = 0; i < 21; i++) {
                 DropPoints[i] = new Panel();
 
@@ -124,9 +163,8 @@ namespace Know_How_Computer
                 DropPoints[i].Top = 23*i + 162;
                 DropPoints[i].Left = 25;
 
-                DropPoints[i].AllowDrop = true;
+                
 
-                DropPoints[i].DragEnter += new DragEventHandler(DropPointsEnter);
                 DropPoints[i].DragDrop += new DragEventHandler(DropPointCreate);
                 DropPoints[i].Click += new EventHandler(DropPointDel);
 
@@ -134,14 +172,6 @@ namespace Know_How_Computer
             }
 
             Controls.SetChildIndex(pictureBox1, 128);
-        }
-
-        private void DropPointsEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.Text))
-                e.Effect = DragDropEffects.Copy;
-            else
-                e.Effect = DragDropEffects.None;
         }
     }
 }

@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Know_How_Computer;
+using System.IO;
+using System.Reflection;
+
+
 
 namespace Know_How_Computer
 {
@@ -21,8 +25,8 @@ namespace Know_How_Computer
 
         public Button[] CommandPresets = new Button[5];
         public PictureBox[] DropPoints = new PictureBox[21];
-
-        public Image PanelCommand;
+        
+        public Image Panel = Know_How_Computer.Properties.Resources.Panel;
 
         public Form1()
         {
@@ -90,7 +94,7 @@ namespace Know_How_Computer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+        
         }
 
         private void MouseDrag(object sender, EventArgs e)
@@ -171,7 +175,7 @@ namespace Know_How_Computer
                 DropPoints[i].Top = 23*i + 162;
                 DropPoints[i].Left = 25;
 
-                DropPoints[i].Image = PanelCommand;
+                DropPoints[i].Image = Panel;
                 DropPoints[i].AllowDrop = true;
 
                 DropPoints[i].DragDrop += new DragEventHandler(DropPointCreate);

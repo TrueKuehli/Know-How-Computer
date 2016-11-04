@@ -33,6 +33,15 @@ namespace Know_How_Computer
             
         }
 
+        public Command(CType command, int data,int pos)
+        {
+            this.data = data;
+            this.command = command;
+            this.id = ids++;
+            this.position = pos;
+
+        }
+
         public void Run()
         {
             switch (command)

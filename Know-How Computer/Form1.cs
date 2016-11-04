@@ -38,9 +38,9 @@ namespace Know_How_Computer
             return value;
         }
         
-        public void addCommand(CType c,int d)
+        public void addCommand(CType c,int d,int pos)
         {
-            Commands.Add(new Command(c,d));
+            Commands.Add(new Command(c,d,pos));
         }
 
         public void initialzeRegister()
@@ -63,19 +63,20 @@ namespace Know_How_Computer
             foreach (string line in lines)
             {
                 tokens = line.Split(' ');
+                i++;
                 switch(tokens[0])
                 {
                     case "+":
-                        addCommand(CType.Inc, Int32.Parse(tokens[1]));
+                        addCommand(CType.Inc, Int32.Parse(tokens[1]),i);
                         break;
                     case "-":
-                        addCommand(CType.Dec, Int32.Parse(tokens[1]));
+                        addCommand(CType.Dec, Int32.Parse(tokens[1]), i);
                         break;
                     case "0":
-                        addCommand(CType.IfZero, Int32.Parse(tokens[1]));
+                        addCommand(CType.IfZero, Int32.Parse(tokens[1]), i);
                         break;
                     case "stop":
-                        addCommand(CType.Stop, 0);
+                        addCommand(CType.Stop, 0, i);
                         break;
                 }
             }

@@ -27,7 +27,16 @@ namespace Know_How_Computer
             InitializeComponent();
         }
 
-        
+        public int posID(int pos)
+        {
+            int value = -1;
+            foreach (Command c in Commands)
+            {
+                if (c.position == pos)
+                    value = c.position; 
+            }
+            return value;
+        }
         
 
         public void initialzeRegister()

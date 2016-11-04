@@ -8,6 +8,7 @@ namespace Know_How_Computer
 {
     public enum CType
     {
+        Jump,
         Inc,
         Dec,
         IfZero,
@@ -46,6 +47,9 @@ namespace Know_How_Computer
         {
             switch (command)
             {
+                case CType.Jump:
+                    Form1.pc = data;
+                    break;
                 case CType.Inc:
                     Form1.Register[data] += 1;
                     Form1.pc++;

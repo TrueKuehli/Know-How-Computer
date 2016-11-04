@@ -66,6 +66,9 @@ namespace Know_How_Computer
                 i++;
                 switch(tokens[0])
                 {
+                    case "s":
+                        addCommand(CType.Jump, Int32.Parse(tokens[1]), i);
+                        break;
                     case "+":
                         addCommand(CType.Inc, Int32.Parse(tokens[1]),i);
                         break;

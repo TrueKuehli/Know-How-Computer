@@ -20,7 +20,9 @@ namespace Know_How_Computer
         public static int pc =  1; 
 
         public Button[] CommandPresets = new Button[5];
-        public Panel[] DropPoints = new Panel[21];
+        public PictureBox[] DropPoints = new PictureBox[21];
+
+        public Image PanelCommand;
 
         public Form1()
         {
@@ -132,6 +134,8 @@ namespace Know_How_Computer
 
             ((Control)pictureBox1).AllowDrop = true;
 
+            //PanelCommand = 
+            
             for (int i = 0; i < 5; i++)
             {
                 CommandPresets[i] = new Button();
@@ -160,14 +164,15 @@ namespace Know_How_Computer
 
             TransparencyKey = Color.Transparent;
             for (int i = 0; i < 21; i++) {
-                DropPoints[i] = new Panel();
+                DropPoints[i] = new PictureBox();
 
                 DropPoints[i].Width = 102;
                 DropPoints[i].Height = 23;
                 DropPoints[i].Top = 23*i + 162;
                 DropPoints[i].Left = 25;
 
-                
+                DropPoints[i].Image = PanelCommand;
+                DropPoints[i].AllowDrop = true;
 
                 DropPoints[i].DragDrop += new DragEventHandler(DropPointCreate);
                 DropPoints[i].Click += new EventHandler(DropPointDel);
@@ -177,5 +182,14 @@ namespace Know_How_Computer
 
             Controls.SetChildIndex(pictureBox1, 128);
         }
+
+        private void DropPointsEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.Text))
+                e.Effect = DragDropEffects.Copy;
+            else
+                e.Effect = DragDropEffects.None;
+        }
+
     }
 }

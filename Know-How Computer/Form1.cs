@@ -20,7 +20,9 @@ namespace Know_How_Computer
         public static int pc =  1; 
 
         public Button[] CommandPresets = new Button[5];
-        public Panel[] DropPoints = new Panel[21];
+        public PictureBox[] DropPoints = new PictureBox[21];
+
+        public Image PanelCommand;
 
         public Form1()
         {
@@ -90,6 +92,8 @@ namespace Know_How_Computer
 
             ((Control)pictureBox1).AllowDrop = true;
 
+            //PanelCommand = 
+            
             for (int i = 0; i < 5; i++)
             {
                 CommandPresets[i] = new Button();
@@ -117,13 +121,14 @@ namespace Know_How_Computer
             CommandPresets[4].Text = "Stop";
 
             for (int i = 0; i < 21; i++) {
-                DropPoints[i] = new Panel();
+                DropPoints[i] = new PictureBox();
 
                 DropPoints[i].Width = 102;
                 DropPoints[i].Height = 23;
                 DropPoints[i].Top = 23*i + 162;
                 DropPoints[i].Left = 25;
 
+                DropPoints[i].Image = PanelCommand;
                 DropPoints[i].AllowDrop = true;
 
                 DropPoints[i].DragEnter += new DragEventHandler(DropPointsEnter);
@@ -143,5 +148,6 @@ namespace Know_How_Computer
             else
                 e.Effect = DragDropEffects.None;
         }
+
     }
 }

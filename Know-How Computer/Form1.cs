@@ -20,6 +20,8 @@ namespace Know_How_Computer
         public static int pc =  1; 
 
         public Button[] CommandPresets = new Button[5];
+        public Panel[] DropPoints = new Panel[21];
+
         public Form1()
         {
             InitializeComponent();
@@ -33,49 +35,9 @@ namespace Know_How_Computer
 
         }
 
-
-
-
-
-        private void panel1_DragEnter(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.Text))
-                e.Effect = DragDropEffects.Copy;
-            else
-                e.Effect = DragDropEffects.None;
-        }
-
         private void Form1_Load(object sender, EventArgs e)
         {
             
-            for (int i = 0; i < 5; i++)
-            {
-                CommandPresets[i] = new Button();
-                CommandPresets[i].Text = "Hello";
-                CommandPresets[i].DoDragDrop(CommandPresets[i].Text,
-                    DragDropEffects.Copy | DragDropEffects.Move);
-
-                CommandPresets[i].MouseDown += new MouseEventHandler(MouseDrag);
-
-                CommandPresets[i].Width = 100;
-                CommandPresets[i].Height = 50;
-                CommandPresets[i].Left = 575;
-                CommandPresets[i].Top = 55*i+10;
-
-                CommandPresets[i].BackColor = System.Drawing.ColorTranslator.FromHtml("#EEEEEE");
-                CommandPresets[i].ForeColor = System.Drawing.ColorTranslator.FromHtml("#1F1F1F");
-                CommandPresets[i].Font = new Font("Arial", 16);
-                CommandPresets[i].Name = "CommandPreset " + i;
-
-                this.Controls.Add(CommandPresets[i]);
-            }
-            CommandPresets[0].Text = "+";
-            CommandPresets[1].Text = "-";
-            CommandPresets[2].Text = "S";
-            CommandPresets[3].Text = "0";
-            CommandPresets[4].Text = "Stop";
-
-            Controls.SetChildIndex(pictureBox1, 128);
         }
 
         private void MouseDrag(object sender, EventArgs e)
@@ -84,16 +46,85 @@ namespace Know_How_Computer
                 DragDropEffects.Copy | DragDropEffects.Move);
         }
 
+        private void DropPointDel(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DropPointCreate(object sender, DragEventArgs e)
+        {
+
+        }
+
 
         private void Form1_Resize(object sender, EventArgs e)
         {
             for (int i = 0; i < 5; i++)
             {
-                CommandPresets[i].Width = Form1.ActiveForm.Width * 100 / 702;
-                CommandPresets[i].Height = Form1.ActiveForm.Height * 50 / 703;
-                CommandPresets[i].Top = Form1.ActiveForm.Height * 55 * i / 703 + (10 * Form1.ActiveForm.Height / 703);
-                CommandPresets[i].Left = Form1.ActiveForm.Width * 575 / 702;
+                CommandPresets[i].Width = pictureBox1.Width * 100 / 686;
+                CommandPresets[i].Height = pictureBox1.Height * 50 / 665;
+                CommandPresets[i].Left = pictureBox1.Width * 575 / 686;
+                CommandPresets[i].Top = pictureBox1.Height * 54 * i / 665 + (10 * Form1.ActiveForm.Height / 665);
             }
+
+            for (int i = 0; i < 21; i++)
+            {
+                DropPoints[i].Width = pictureBox1.Width * 102 / 686;
+                DropPoints[i].Height = pictureBox1.Height * 23 / 665;
+                DropPoints[i].Left = pictureBox1.Width * 25 / 686;
+                DropPoints[i].Top = pictureBox1.Height * 23 * i / 665 + (162 * pictureBox1.Height / 665);
+            }
+        }
+
+        private void Form1_Shown(object sender, EventArgs e)
+        {
+
+            ((Control)pictureBox1).AllowDrop = true;
+
+            for (int i = 0; i < 5; i++)
+            {
+                CommandPresets[i] = new Button();
+
+                CommandPresets[i].Width = 100;
+                CommandPresets[i].Height = 50;
+                CommandPresets[i].Left = 575;
+                CommandPresets[i].Top = 55 * i + 10;
+
+                CommandPresets[i].BackColor = System.Drawing.ColorTranslator.FromHtml("#EEEEEE");
+                CommandPresets[i].ForeColor = System.Drawing.ColorTranslator.FromHtml("#1F1F1F");
+                CommandPresets[i].Font = new Font("Arial", 16);
+
+                CommandPresets[i].Name = "CommandPreset " + i;
+                CommandPresets[i].MouseDown += new MouseEventHandler(MouseDrag);
+
+                this.Controls.Add(CommandPresets[i]);
+                CommandPresets[i].DoDragDrop(CommandPresets[i].Text,
+                    DragDropEffects.Copy | DragDropEffects.Move);
+            }
+            CommandPresets[0].Text = "+";
+            CommandPresets[1].Text = "-";
+            CommandPresets[2].Text = "S";
+            CommandPresets[3].Text = "0";
+            CommandPresets[4].Text = "Stop";
+
+            TransparencyKey = Color.Transparent;
+            for (int i = 0; i < 21; i++) {
+                DropPoints[i] = new Panel();
+
+                DropPoints[i].Width = 102;
+                DropPoints[i].Height = 23;
+                DropPoints[i].Top = 23*i + 162;
+                DropPoints[i].Left = 25;
+
+                
+
+                DropPoints[i].DragDrop += new DragEventHandler(DropPointCreate);
+                DropPoints[i].Click += new EventHandler(DropPointDel);
+
+                this.Controls.Add(DropPoints[i]);
+            }
+
+            Controls.SetChildIndex(pictureBox1, 128);
         }
     }
 }

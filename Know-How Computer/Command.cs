@@ -23,6 +23,7 @@ namespace Know_How_Computer
         public int position;
         public int data;
         public CType command;
+        public bool disabled = false;
 
         public Command(CType command, int data)
         {
@@ -30,6 +31,15 @@ namespace Know_How_Computer
             this.command = command;
             this.id = ids++;
             
+        }
+
+        public Command(CType command, int data,int pos)
+        {
+            this.data = data;
+            this.command = command;
+            this.id = ids++;
+            this.position = pos;
+
         }
 
         public void Run()

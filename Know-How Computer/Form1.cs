@@ -176,6 +176,7 @@ namespace Know_How_Computer
                 DropPoints[i].SizeMode = PictureBoxSizeMode.StretchImage;
                 DropPoints[i].AllowDrop = true;
 
+                DropPoints[i].DragEnter += new DragEventHandler(DropPointsEnter);
                 DropPoints[i].DragDrop += new DragEventHandler(DropPointCreate);
                 DropPoints[i].Click += new EventHandler(DropPointDel);
 

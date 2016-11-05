@@ -127,9 +127,9 @@ namespace Know_How_Computer
             for (int i = 0; i < 21; i++)
             {
                 DropPoints[i].Width = pictureBox1.Width * 102 / 686;
-                DropPoints[i].Height = pictureBox1.Height * 23 / 665;
-                DropPoints[i].Left = pictureBox1.Width * 25 / 686;
-                DropPoints[i].Top = pictureBox1.Height * 23 * i / 665 + (162 * pictureBox1.Height / 665);
+                DropPoints[i].Height = pictureBox1.Height * 220 / 6423;
+                DropPoints[i].Left = pictureBox1.Width * 24 / 686;
+                DropPoints[i].Top = pictureBox1.Height * 220 * i / 6423 + (163 * pictureBox1.Height / 665);
             }
         }
 
@@ -168,9 +168,9 @@ namespace Know_How_Computer
                 DropPoints[i] = new PictureBox();
 
                 DropPoints[i].Width = 102;
-                DropPoints[i].Height = 23;
-                DropPoints[i].Top = 23*i + 162;
-                DropPoints[i].Left = 25;
+                DropPoints[i].Height = pictureBox1.Height * 220 / 6423;
+                DropPoints[i].Top = pictureBox1.Height * 220 * i / 6423 + (163 * pictureBox1.Height / 665);
+                DropPoints[i].Left = 24;
 
                 DropPoints[i].Image = Panel;
                 DropPoints[i].SizeMode = PictureBoxSizeMode.StretchImage;
@@ -182,6 +182,8 @@ namespace Know_How_Computer
 
                 this.Controls.Add(DropPoints[i]);
             }
+
+            DropPoints[20].Image = Know_How_Computer.Properties.Resources.PanelLast;
 
             Controls.SetChildIndex(pictureBox1, 128);
         }

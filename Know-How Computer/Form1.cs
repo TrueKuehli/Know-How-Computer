@@ -137,8 +137,6 @@ namespace Know_How_Computer
         {
 
             ((Control)pictureBox1).AllowDrop = true;
-
-            //PanelCommand = 
             
             for (int i = 0; i < 5; i++)
             {
@@ -166,7 +164,6 @@ namespace Know_How_Computer
             CommandPresets[3].Text = "0";
             CommandPresets[4].Text = "Stop";
 
-            TransparencyKey = Color.Transparent;
             for (int i = 0; i < 21; i++) {
                 DropPoints[i] = new PictureBox();
 
@@ -176,6 +173,7 @@ namespace Know_How_Computer
                 DropPoints[i].Left = 25;
 
                 DropPoints[i].Image = Panel;
+                DropPoints[i].SizeMode = PictureBoxSizeMode.StretchImage;
                 DropPoints[i].AllowDrop = true;
 
                 DropPoints[i].DragDrop += new DragEventHandler(DropPointCreate);

@@ -49,19 +49,22 @@ namespace Know_How_Computer
             Commands.Add(new Command(c,d,pos));
         }
 
+        /*
+        Not needed!
+         
         public void initialzeRegister()
         {
             Random zufall = new Random();
             for (int i = 0; i <= Register.Length; i++)
                 Register[i] = zufall.Next(0,32);
-        }
+        }*/
 
         public void removeCommand(int pos)
         {
             Commands[posID(pos)].disabled = true;
         }
 
-        public  void readfile()
+        public  void readfile() //Todo: remove, just a debugging feature anyway
         {
             string[] lines = System.IO.File.ReadAllLines("../../../programm.txt");
             string[] tokens = new string[2];
@@ -71,6 +74,8 @@ namespace Know_How_Computer
                 tokens = line.Split(' ');
                 i++;               
                 addCommand(stringToType(tokens[0]), Int32.Parse(tokens[1]), i);
+
+                
             }
 
         }
@@ -105,14 +110,24 @@ namespace Know_How_Computer
 
         private void DropPointDel(object sender, EventArgs e)
         {
-
+            //Todo: Delete Command from Program Register
         }
 
         private void DropPointCreate(object sender, DragEventArgs e)
         {
             string data = e.Data.GetData(DataFormats.Text).ToString();
-            addCommand(stringToType(data), 0, 1);
+            
+            //Todo: Show Message Box Asking for Data Register Number 
             MessageBox.Show(data);
+            int sendernum;
+
+            if (Int32.TryParse((sender as PictureBox).Name, out sendernum))
+            {
+                addCommand(stringToType(data), 0, sendernum);
+                //Todo: Add Text to PictureBox
+            }
+
+
         }
 
 
@@ -174,6 +189,7 @@ namespace Know_How_Computer
                 DropPoints[i].Top = pictureBox1.Height * 220 * i / 6423 + (163 * pictureBox1.Height / 665);
                 DropPoints[i].Left = 24;
 
+                DropPoints[i].Name = (i+1).ToString();
                 DropPoints[i].Image = Panel;
                 DropPoints[i].SizeMode = PictureBoxSizeMode.StretchImage;
                 DropPoints[i].AllowDrop = true;

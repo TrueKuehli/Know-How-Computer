@@ -63,11 +63,12 @@ namespace Know_How_Computer {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Panel {
+        internal static System.Drawing.Image Panel {
             get {
                 object obj = ResourceManager.GetObject("Panel", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ((System.Drawing.Image)(obj));
             }
         }
+        
     }
 }

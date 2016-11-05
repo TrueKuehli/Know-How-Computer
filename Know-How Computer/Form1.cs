@@ -63,33 +63,33 @@ namespace Know_How_Computer
 
         public  void readfile()
         {
-            string[] lines = System.IO.File.ReadAllLines("../../programm.txt");
+            string[] lines = System.IO.File.ReadAllLines("../../../programm.txt");
             string[] tokens = new string[2];
             int i = 0;
             foreach (string line in lines)
             {
                 tokens = line.Split(' ');
-                i++;
-                switch(tokens[0])
-                {
-                    case "s":
-                        addCommand(CType.Jump, Int32.Parse(tokens[1]), i);
-                        break;
-                    case "+":
-                        addCommand(CType.Inc, Int32.Parse(tokens[1]),i);
-                        break;
-                    case "-":
-                        addCommand(CType.Dec, Int32.Parse(tokens[1]), i);
-                        break;
-                    case "0":
-                        addCommand(CType.IfZero, Int32.Parse(tokens[1]), i);
-                        break;
-                    case "stop":
-                        addCommand(CType.Stop, 0, i);
-                        break;
-                }
+                i++;               
+                addCommand(stringToType(tokens[0]), Int32.Parse(tokens[1]), i);
             }
 
+        }
+        public CType stringToType(string s)
+        {
+            switch (s)
+            {
+                case "s":
+                    return CType.Jump;
+                case "+":
+                    return CType.Inc;
+                case "-":
+                    return CType.Dec;
+                case "0":
+                    return CType.IfZero;
+                case "stop":
+                    return CType.Stop;
+            }
+            return CType.Stop;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -110,7 +110,9 @@ namespace Know_How_Computer
 
         private void DropPointCreate(object sender, DragEventArgs e)
         {
-
+            string data = e.Data.GetData(DataFormats.Text).ToString();
+            addCommand(stringToType(data), 0, 1);
+            MessageBox.Show(data);
         }
 
 

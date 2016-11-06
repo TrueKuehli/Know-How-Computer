@@ -87,6 +87,7 @@ namespace Know_How_Computer
         public Point koords = new Point();
         private int Width;
         private int Height;
+        private Stack<Streichholz> Hölzer = new Stack<Streichholz>();
         
         
         public Register()

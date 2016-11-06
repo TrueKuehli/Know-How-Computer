@@ -85,10 +85,16 @@ namespace Know_How_Computer
         
         public Register()
         {
+            this.ID = ids++;
+            Striker.MakeTransparent(ColorTranslator.FromHtml("#000000"));
+        }
+
+        public void Resize(Point kords)
+        {
 
         }
 
-        public void Resize(int Left,int Right)
+        public void Repaint()
         {
 
         }

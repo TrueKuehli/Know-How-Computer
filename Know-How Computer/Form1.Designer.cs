@@ -61,6 +61,10 @@
             this.Pen.TabIndex = 1;
             this.Pen.TabStop = false;
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // trackBar1
             // 
             this.trackBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(243)))), ((int)(((byte)(225)))));

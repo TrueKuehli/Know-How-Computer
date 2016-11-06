@@ -342,5 +342,11 @@ namespace Know_How_Computer
 
 
         }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Commands[posID(pc)].Run();
+            ResizePen();
+        }
     }
 }

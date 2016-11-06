@@ -161,12 +161,25 @@ namespace Know_How_Computer
 
         private void Form1_Resize(object sender, EventArgs e)
         {
+            int fSize;
+            if (pictureBox1.Width > pictureBox1.Height)
+            {
+                fSize = 16 * pictureBox1.Height / 665;
+            }
+            else
+            {
+                fSize = 16 * pictureBox1.Width / 686;
+            }
+
+            Font f = new Font("Arial", fSize);
+
             for (int i = 0; i < 5; i++)
             {
                 CommandPresets[i].Width = pictureBox1.Width * 100 / 686;
                 CommandPresets[i].Height = pictureBox1.Height * 50 / 665;
                 CommandPresets[i].Left = pictureBox1.Width * 575 / 686;
                 CommandPresets[i].Top = pictureBox1.Height * 54 * i / 665 + (10 * Form1.ActiveForm.Height / 665);
+                CommandPresets[i].Font = f;
             }
 
             for (int i = 0; i < 21; i++)
@@ -277,11 +290,22 @@ namespace Know_How_Computer
                         break;
                 }
 
-                SizeF textSize = e.Graphics.MeasureString(tstring, Font);
+                int fSize;
+                if (pictureBox1.Width > pictureBox1.Height)
+                {
+                    fSize = 11 * pictureBox1.Height / 665;
+                } else
+                {
+                    fSize = 11 * pictureBox1.Width / 686;
+                }
+
+                Font f = new Font("Arial", fSize);
+                SizeF textSize = e.Graphics.MeasureString(tstring, f);
+                 
                 PointF locationToDraw = new PointF();
                 locationToDraw.X = ((sender as PictureBox).Width / 2) - (textSize.Width / 2);
                 locationToDraw.Y = ((sender as PictureBox).Height / 2) - (textSize.Height / 2);
-                e.Graphics.DrawString(tstring, Font, Brushes.Black, locationToDraw);
+                e.Graphics.DrawString(tstring, f, Brushes.Black, locationToDraw);
             }
                 
         }

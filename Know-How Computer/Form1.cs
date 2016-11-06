@@ -262,6 +262,11 @@ namespace Know_How_Computer
 
             Controls.SetChildIndex(pictureBox1, 128);
 
+            ResizePen();
+        }
+
+        private void ResizePen()
+        {
             Pen.Width = pictureBox1.Width * 175 / 686;
             Pen.Height = pictureBox1.Height * 220 / 6423;
             Pen.Left = pictureBox1.Width * 165 / 686;
@@ -341,6 +346,12 @@ namespace Know_How_Computer
             }
 
 
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            Commands[posID(pc)].Run();
+            ResizePen();
         }
     }
 }

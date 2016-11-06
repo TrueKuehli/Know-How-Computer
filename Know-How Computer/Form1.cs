@@ -86,7 +86,7 @@ namespace Know_How_Computer
         {
             switch (s)
             {
-                case "s":
+                case "S":
                     return CType.Jump;
                 case "+":
                     return CType.Inc;
@@ -94,7 +94,7 @@ namespace Know_How_Computer
                     return CType.Dec;
                 case "0":
                     return CType.IfZero;
-                case "stop":
+                case "Stop":
                     return CType.Stop;
             }
             return CType.Stop;
@@ -142,12 +142,15 @@ namespace Know_How_Computer
             MessageBox.Show((dialogResult).ToString());
 
             int sendernum;
-
+            int RegisterNumber = 0;
             if (Int32.TryParse((sender as PictureBox).Name, out sendernum))
             {
                 removeCommand(sendernum);
-                addCommand(stringToType(data), /*RegisterNummer*/0, sendernum);
+                addCommand(stringToType(data), RegisterNumber, sendernum);
                 //Todo: Add Text to PictureBox
+                
+                (sender as PictureBox).Text = data+" "+ Register;
+                
             }
 
 

@@ -189,10 +189,11 @@ namespace Know_How_Computer
                 DropPoints[i].Left = pictureBox1.Width * 24 / 686;
                 DropPoints[i].Top = pictureBox1.Height * 220 * i / 6423 + (163 * pictureBox1.Height / 665);
             }
-            Pen.Width = pictureBox1.Width * 102 / 686;
+
+            Pen.Width = pictureBox1.Width * 175 / 686;
             Pen.Height = pictureBox1.Height * 220 / 6423;
-            Pen.Left = pictureBox1.Width * 24 / 686;
-            Pen.Top = pictureBox1.Height * 220 * pc / 6423 + (163 * pictureBox1.Height / 665);
+            Pen.Left = pictureBox1.Width * 165 / 686;
+            Pen.Top = pictureBox1.Height * 220 * (pc-1) / 6423 + (163 * pictureBox1.Height / 665);
 
         }
 
@@ -252,6 +253,11 @@ namespace Know_How_Computer
             DropPoints[20].Image = Know_How_Computer.Properties.Resources.PanelLast;
 
             Controls.SetChildIndex(pictureBox1, 128);
+
+            Pen.Width = pictureBox1.Width * 175 / 686;
+            Pen.Height = pictureBox1.Height * 220 / 6423;
+            Pen.Left = pictureBox1.Width * 165 / 686;
+            Pen.Top = pictureBox1.Height * 220 * (pc - 1) / 6423 + (163 * pictureBox1.Height / 665);
         }
 
         private void DropPointsEnter(object sender, DragEventArgs e)

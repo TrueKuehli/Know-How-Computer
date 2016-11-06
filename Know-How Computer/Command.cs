@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-
+using System.Windows.Forms;
 
 namespace Know_How_Computer
 {
@@ -87,7 +87,7 @@ namespace Know_How_Computer
         public Point koords = new Point();
         private int Width;
         private int Height;
-        private Stack<Streichholz> Hölzer = new Stack<Streichholz>();
+        private Stack<Streichholz> hoelzer = new Stack<Streichholz>();
         
         
         public Register()
@@ -115,15 +115,21 @@ namespace Know_How_Computer
     }
     class Streichholz
     {
+        const double ratio = 0.05656324582338902147971360381862;
         public int ID;
         Point pos;
         private int Width;
         private int Height;
         private Bitmap Striker = Properties.Resources.streichholz;
+        PictureBox Box = new PictureBox();
 
         public Streichholz()
         {
             Striker.MakeTransparent(ColorTranslator.FromHtml("#000000"));
+        }
+        public void Paint()
+        {
+
         }
     }
 

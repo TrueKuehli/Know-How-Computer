@@ -321,5 +321,9 @@ namespace Know_How_Computer
                 
         }
 
+        private void trackBar1_Scroll(object sender, EventArgs e)
+        {
+            trackBar1.Value
+        }
     }
 }

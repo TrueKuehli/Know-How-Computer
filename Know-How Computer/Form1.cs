@@ -195,6 +195,14 @@ namespace Know_How_Computer
             Pen.Left = pictureBox1.Width * 165 / 686;
             Pen.Top = pictureBox1.Height * 220 * (pc-1) / 6423 + (163 * pictureBox1.Height / 665);
 
+            trackBar1.Width = pictureBox1.Width * 148 / 686;
+            trackBar1.Height = pictureBox1.Height * 48 / 665;
+            trackBar1.Left = pictureBox1.Width * 526 / 686;
+            trackBar1.Top = pictureBox1.Height * 462 / 665;
+
+            label1.Left = pictureBox1.Width * 523 / 686;
+            label1.Top = pictureBox1.Height * 434 / 665;
+            label1.Font = f;
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -323,16 +331,13 @@ namespace Know_How_Computer
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            //5000
-            //50
-
             if (trackBar1.Value == 101)
             {
                 timer1.Interval = 1;
             }
             else
             {
-                timer1.Interval = trackBar1.Value * 5000 / 100;
+                timer1.Interval = (101 - trackBar1.Value) * 5000 / 100;
             }
 
 

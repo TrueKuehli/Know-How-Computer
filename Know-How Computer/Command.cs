@@ -77,16 +77,23 @@ namespace Know_How_Computer
     {
         public static byte ids = 1;
         public byte ID;
-        public byte value=0;
+        public byte value
+        {
+            set {if (value >= 0)
+                    this.value = value;
+                Repaint();
+                }
+        }
         public Point koords = new Point();
         private int Width;
         private int Height;
-        private Bitmap Striker = Properties.Resources.streichholz;
+        
         
         public Register()
         {
             this.ID = ids++;
-            Striker.MakeTransparent(ColorTranslator.FromHtml("#000000"));
+            value = 0;
+            
         }
 
         public void Resize(Point kords)
@@ -101,6 +108,19 @@ namespace Know_How_Computer
 
 
 
+    }
+    class Streichholz
+    {
+        public int ID;
+        Point pos;
+        private int Width;
+        private int Height;
+        private Bitmap Striker = Properties.Resources.streichholz;
+
+        public Streichholz()
+        {
+            Striker.MakeTransparent(ColorTranslator.FromHtml("#000000"));
+        }
     }
 
    

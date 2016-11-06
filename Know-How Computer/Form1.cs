@@ -123,7 +123,7 @@ namespace Know_How_Computer
 
             if (Int32.TryParse((sender as PictureBox).Name, out sendernum))
             {
-                addCommand(stringToType(data), 0, sendernum);
+                addCommand(stringToType(data), /*RegisterNummer*/0, sendernum);
                 //Todo: Add Text to PictureBox
             }
 

@@ -50,9 +50,9 @@
             // 
             this.Pen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.Pen.Image = global::Know_How_Computer.Properties.Resources.Pen;
-            this.Pen.Location = new System.Drawing.Point(-185, 174);
+            this.Pen.Location = new System.Drawing.Point(9999, 9999);
             this.Pen.Name = "Pen";
-            this.Pen.Size = new System.Drawing.Size(803, 79);
+            this.Pen.Size = new System.Drawing.Size(0, 0);
             this.Pen.TabIndex = 1;
             this.Pen.TabStop = false;
             // 

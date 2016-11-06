@@ -19,6 +19,8 @@ namespace Know_How_Computer
 
     public partial class Form1 : Form
     {
+        
+        public int chosenReg { get; set; }
         public static int[] Register = new int[8];
         List<Command> Commands = new List<Command>();
         public static int pc =  1; 
@@ -61,7 +63,8 @@ namespace Know_How_Computer
 
         public void removeCommand(int pos)
         {
-            Commands[posID(pos)].disabled = true;
+            try { Commands[posID(pos)].disabled = true; }
+            catch { }
         }
 
         public  void readfile() //Todo: remove, just a debugging feature anyway
@@ -111,18 +114,38 @@ namespace Know_How_Computer
         private void DropPointDel(object sender, EventArgs e)
         {
             //Todo: Delete Command from Program Register
+            int sendernum;
+            if (Int32.TryParse((sender as PictureBox).Name, out sendernum))
+            {
+                removeCommand(sendernum);
+                //Todo: Add Text to PictureBox
+            }
         }
 
         private void DropPointCreate(object sender, DragEventArgs e)
         {
             string data = e.Data.GetData(DataFormats.Text).ToString();
-            
-            //Todo: Show Message Box Asking for Data Register Number 
-            MessageBox.Show(data);
+
+            //Todo: Show Message Box Asking for Data Register Number
+            PickRegister PickR = new PickRegister();
+            Form1.ActiveForm.Enabled = false;
+            if (data == "S")
+            {
+                PickR.Type = "S";
+            } else
+            {
+                PickR.Type = "O";
+            }
+            PickR.ShowDialog();
+            int dialogResult = (int)PickR.returnInt;
+            Form1.ActiveForm.Enabled = true;
+            MessageBox.Show((dialogResult).ToString());
+
             int sendernum;
 
             if (Int32.TryParse((sender as PictureBox).Name, out sendernum))
             {
+                removeCommand(sendernum);
                 addCommand(stringToType(data), /*RegisterNummer*/0, sendernum);
                 //Todo: Add Text to PictureBox
             }

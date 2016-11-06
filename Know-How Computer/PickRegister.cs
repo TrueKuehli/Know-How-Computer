@@ -32,8 +32,6 @@ namespace Know_How_Computer
                 label1.Text = "Bitte geben Sie das Programmregister ein, zu welchem\ngesprungen werden soll:";
                 numericUpDown1.Maximum = 21;
             }
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)

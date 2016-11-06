@@ -52,37 +52,12 @@ namespace Know_How_Computer
             Commands[Commands.Count() - 1].id = Commands.IndexOf(Commands[Commands.Count() - 1]);
         }
 
-        /*
-        Not needed!
-         
-        public void initialzeRegister()
-        {
-            Random zufall = new Random();
-            for (int i = 0; i <= Register.Length; i++)
-                Register[i] = zufall.Next(0,32);
-        }*/
-
         public void removeCommand(int pos)
         {
             try { Commands.Remove(Commands[posID(pos)]); }
             catch { };
         }
 
-        public  void readfile() //Todo: remove, just a debugging feature anyway
-        {
-            string[] lines = System.IO.File.ReadAllLines("../../../programm.txt");
-            string[] tokens = new string[2];
-            int i = 0;
-            foreach (string line in lines)
-            {
-                tokens = line.Split(' ');
-                i++;               
-                addCommand(stringToType(tokens[0]), Int32.Parse(tokens[1]), i);
-
-                
-            }
-
-        }
         public CType stringToType(string s)
         {
             switch (s)
@@ -218,8 +193,8 @@ namespace Know_How_Computer
                 CommandPresets[i].Left = 575;
                 CommandPresets[i].Top = 55 * i + 10;
 
-                CommandPresets[i].BackColor = System.Drawing.ColorTranslator.FromHtml("#f2cf8b");
-                CommandPresets[i].ForeColor = System.Drawing.ColorTranslator.FromHtml("#1F1F1F");
+                CommandPresets[i].BackColor = ColorTranslator.FromHtml("#f2cf8b");
+                CommandPresets[i].ForeColor = ColorTranslator.FromHtml("#1F1F1F");
                 CommandPresets[i].Font = new Font("Arial", 16);
 
                 CommandPresets[i].Name = "CommandPreset " + i;

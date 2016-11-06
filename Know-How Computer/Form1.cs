@@ -131,11 +131,14 @@ namespace Know_How_Computer
 
             MessageBox.Show(data);
             int sendernum;
-
+            int RegisterNumber = 0;
             if (Int32.TryParse((sender as PictureBox).Name, out sendernum))
             {
-                addCommand(stringToType(data), /*RegisterNummer*/0, sendernum);
+                addCommand(stringToType(data), RegisterNumber, sendernum);
                 //Todo: Add Text to PictureBox
+                
+                (sender as PictureBox).Text = data+" "+ Register;
+                
             }
 
 

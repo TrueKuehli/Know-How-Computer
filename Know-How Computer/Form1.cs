@@ -23,6 +23,7 @@ namespace Know_How_Computer
         public int chosenReg { get; set; }
         public static int[] Register = new int[8];
         public List<Command> Commands = new List<Command>();
+        private List<Register> regs = new List<Register>();
         public static int pc =  1; 
 
         public Button[] CommandPresets = new Button[5];
@@ -177,6 +178,11 @@ namespace Know_How_Computer
             label1.Left = pictureBox1.Width * 523 / 686;
             label1.Top = pictureBox1.Height * 434 / 665;
             label1.Font = f;
+
+            foreach (Register reg in regs)
+            {
+                reg.Resize(new Size(pictureBox1.Width, pictureBox1.Height));
+            }
         }
 
         private void Form1_Shown(object sender, EventArgs e)

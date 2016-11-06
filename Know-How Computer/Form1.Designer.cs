@@ -114,6 +114,7 @@
             this.Controls.Add(this.Pen);
             this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Know How Computer";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Form1_Shown);

@@ -87,6 +87,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "PickRegister";
             this.Opacity = 0.95D;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Registerwahl";
             this.Load += new System.EventHandler(this.PickRegister_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

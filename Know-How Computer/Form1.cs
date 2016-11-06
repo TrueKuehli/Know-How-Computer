@@ -83,7 +83,7 @@ namespace Know_How_Computer
         {
             switch (s)
             {
-                case "s":
+                case "S":
                     return CType.Jump;
                 case "+":
                     return CType.Inc;
@@ -91,7 +91,7 @@ namespace Know_How_Computer
                     return CType.Dec;
                 case "0":
                     return CType.IfZero;
-                case "stop":
+                case "Stop":
                     return CType.Stop;
             }
             return CType.Stop;
@@ -111,13 +111,24 @@ namespace Know_How_Computer
         private void DropPointDel(object sender, EventArgs e)
         {
             //Todo: Delete Command from Program Register
+            int sendernum;
+            if (Int32.TryParse((sender as PictureBox).Name, out sendernum))
+            {
+                Commands[posID(sendernum)].disabled = true;
+                
+            }
+
+
         }
 
         private void DropPointCreate(object sender, DragEventArgs e)
         {
             string data = e.Data.GetData(DataFormats.Text).ToString();
-            
+
             //Todo: Show Message Box Asking for Data Register Number 
+
+           
+
             MessageBox.Show(data);
             int sendernum;
 

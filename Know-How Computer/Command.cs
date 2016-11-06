@@ -89,9 +89,12 @@ namespace Know_How_Computer
             Striker.MakeTransparent(ColorTranslator.FromHtml("#000000"));
         }
 
-        public void Resize(Point kords)
+        public void Resize(Size size)
         {
-
+            this.Width = 102 * size.Width / 686;
+            this.Height = 102 * size.Height / 665;
+            this.koords.X = 374 * size.Width / 686;
+            this.koords.Y = 59 * this.ID + 168 * size.Height / 665;
         }
 
         public void Repaint()

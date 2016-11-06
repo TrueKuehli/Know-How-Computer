@@ -211,7 +211,7 @@ namespace Know_How_Computer
                 CommandPresets[i].Left = 575;
                 CommandPresets[i].Top = 55 * i + 10;
 
-                CommandPresets[i].BackColor = System.Drawing.ColorTranslator.FromHtml("#EEEEEE");
+                CommandPresets[i].BackColor = System.Drawing.ColorTranslator.FromHtml("#f2cf8b");
                 CommandPresets[i].ForeColor = System.Drawing.ColorTranslator.FromHtml("#1F1F1F");
                 CommandPresets[i].Font = new Font("Arial", 16);
 
@@ -323,7 +323,19 @@ namespace Know_How_Computer
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
-            trackBar1.Value
+            //5000
+            //50
+
+            if (trackBar1.Value == 101)
+            {
+                timer1.Interval = 1;
+            }
+            else
+            {
+                timer1.Interval = trackBar1.Value * 5000 / 100;
+            }
+
+
         }
     }
 }

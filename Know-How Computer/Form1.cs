@@ -127,18 +127,25 @@ namespace Know_How_Computer
             string data = e.Data.GetData(DataFormats.Text).ToString();
 
             //Todo: Show Message Box Asking for Data Register Number
-            PickRegister PickR = new PickRegister();
-            Form1.ActiveForm.Enabled = false;
-            if (data == "S")
+            int dialogResult;
+
+            if ((stringToType(data) != CType.Stop))
             {
-                PickR.Type = "S";
-            } else
-            {
-                PickR.Type = "O";
+                PickRegister PickR = new PickRegister();
+                Form1.ActiveForm.Enabled = false;
+                if (data == "S")
+                {
+                    PickR.Type = "S";
+                } else
+                {
+                    PickR.Type = "O";
+                }
+                PickR.ShowDialog();
+                dialogResult = (int)PickR.returnInt;
+                Form1.ActiveForm.Enabled = true;
             }
-            PickR.ShowDialog();
-            int dialogResult = (int)PickR.returnInt;
-            Form1.ActiveForm.Enabled = true;
+            else
+                dialogResult = 0;
 
             int sendernum;
 

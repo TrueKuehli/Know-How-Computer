@@ -41,7 +41,7 @@ namespace Know_How_Computer
             foreach (Command c in Commands)
             {
                 if (c.position == pos)
-                    value = c.position; 
+                    value = c.id; 
             }
             return value;
         }
@@ -153,13 +153,8 @@ namespace Know_How_Computer
             {
                 removeCommand(sendernum);
                 addCommand(stringToType(data), dialogResult, sendernum);
-                //Todo: Add Text to PictureBox
-
-
-                (sender as PictureBox).Text = data+" "+ Register;
-                
             }
-
+            (sender as PictureBox).Refresh();
 
         }
 
@@ -252,9 +247,43 @@ namespace Know_How_Computer
 
         private void DropPointsDraw(object sender, PaintEventArgs e)
         {
-            e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
-            string text = "Text";
-            //SizeF text = e.Graphics.MeasureString
+            if (Int32.Parse(posID(Int32.Parse((sender as PictureBox).Name)).ToString()) != -1)
+            {
+                
+                e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+                int i = posID(Int32.Parse((sender as PictureBox).Name));
+                CType t = Commands[i].command;
+                string tstring;
+                
+                switch (t)
+                {
+                    case CType.Dec:
+                        tstring = "- " + Commands[i].data.ToString();
+                        break;
+                    case CType.IfZero:
+                        tstring = "0 " + Commands[i].data.ToString();
+                        break;
+                    case CType.Inc:
+                        tstring = "+ " + Commands[i].data.ToString();
+                        break;
+                    case CType.Jump:
+                        tstring = "S " + Commands[i].data.ToString();
+                        break;
+                    case CType.Stop:
+                        tstring = "Stop";
+                        break;
+                    default:
+                        tstring = " ";
+                        break;
+                }
+
+                SizeF textSize = e.Graphics.MeasureString(tstring, Font);
+                PointF locationToDraw = new PointF();
+                locationToDraw.X = ((sender as PictureBox).Width / 2) - (textSize.Width / 2);
+                locationToDraw.Y = ((sender as PictureBox).Height / 2) - (textSize.Height / 2);
+                e.Graphics.DrawString(tstring, Font, Brushes.Black, locationToDraw);
+            }
+                
         }
 
     }

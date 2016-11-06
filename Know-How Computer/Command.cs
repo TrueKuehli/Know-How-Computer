@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
+
 
 namespace Know_How_Computer
 {
@@ -70,6 +72,30 @@ namespace Know_How_Computer
 
             }
         }
+
+    }
+
+    class Register
+    {
+        public static byte ids = 1;
+        public byte ID;
+        public byte value=0;
+        public Point koords = new Point();
+        private int Width;
+        private int Height;
+        private Bitmap Striker = Properties.Resources.streichholz;
+        
+        public Register()
+        {
+
+        }
+
+        public void Resize(int Left,int Right)
+        {
+
+        }
+
+
 
     }
 

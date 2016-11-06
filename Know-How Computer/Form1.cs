@@ -22,7 +22,7 @@ namespace Know_How_Computer
         
         public int chosenReg { get; set; }
         public static int[] Register = new int[8];
-        List<Command> Commands = new List<Command>();
+        public List<Command> Commands = new List<Command>();
         public static int pc =  1; 
 
         public Button[] CommandPresets = new Button[5];
@@ -49,6 +49,7 @@ namespace Know_How_Computer
         public void addCommand(CType c,int d,int pos)
         {
             Commands.Add(new Command(c,d,pos));
+            Commands[Commands.Count() - 1].id = Commands.IndexOf(Commands[Commands.Count() - 1]);
         }
 
         /*
@@ -63,8 +64,8 @@ namespace Know_How_Computer
 
         public void removeCommand(int pos)
         {
-            try { Commands[posID(pos)].disabled = true; }
-            catch { }
+            try { Commands.Remove(Commands[posID(pos)]); }
+            catch { };
         }
 
         public  void readfile() //Todo: remove, just a debugging feature anyway
@@ -113,12 +114,11 @@ namespace Know_How_Computer
 
         private void DropPointDel(object sender, EventArgs e)
         {
-            //Todo: Delete Command from Program Register
             int sendernum;
             if (Int32.TryParse((sender as PictureBox).Name, out sendernum))
             {
                 removeCommand(sendernum);
-                //Todo: Add Text to PictureBox
+                (sender as PictureBox).Refresh();
             }
         }
 
@@ -126,7 +126,6 @@ namespace Know_How_Computer
         {
             string data = e.Data.GetData(DataFormats.Text).ToString();
 
-            //Todo: Show Message Box Asking for Data Register Number
             int dialogResult;
 
             if ((stringToType(data) != CType.Stop))
@@ -207,7 +206,7 @@ namespace Know_How_Computer
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-
+            trackBar1.Value = 1;
             ((Control)pictureBox1).AllowDrop = true;
             
             for (int i = 0; i < 5; i++)
@@ -350,8 +349,46 @@ namespace Know_How_Computer
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            Commands[posID(pc)].Run();
-            ResizePen();
+            if (posID(pc) == -1)
+            {
+                timer1.Enabled = false;
+                button1.Text = "Start";
+                MessageBox.Show("Der PZ steht auf einem leeren Feld!");
+                pc = 1;
+                ResizePen();
+            }
+            else
+            {
+                char result = Commands[posID(pc)].Run();
+                if (result == 'S')
+                {
+                    ResizePen();
+                    timer1.Enabled = false;
+                    button1.Text = "Start";
+                    MessageBox.Show("Ende des Programms erreicht.");
+                    pc = 1;
+                } else if (result == '-')
+                {
+                    ResizePen();
+                    timer1.Enabled = false;
+                    button1.Text = "Start";
+                    MessageBox.Show("Datenregister " + Commands[posID(pc)].data + " ist bereits leer!");
+                }
+                ResizePen();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (button1.Text == "Start")
+            {
+                timer1.Enabled = true;
+                button1.Text = "Stop";
+            } else
+            {
+                timer1.Enabled = false;
+                button1.Text = "Start";
+            }
         }
     }
 }

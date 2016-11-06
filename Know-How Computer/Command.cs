@@ -17,7 +17,7 @@ namespace Know_How_Computer
 
     
 
-    class Command
+    public class Command
     {
         public static int ids=0;
         public int id;
@@ -30,20 +30,17 @@ namespace Know_How_Computer
         {
             this.data = data;
             this.command = command;
-            this.id = ids++;
-            
         }
 
         public Command(CType command, int data,int pos)
         {
             this.data = data;
             this.command = command;
-            this.id = ids++;
             this.position = pos;
 
         }
 
-        public void Run()
+        public char Run()
         {
             switch (command)
             {
@@ -51,11 +48,13 @@ namespace Know_How_Computer
                     Form1.pc = data;
                     break;
                 case CType.Inc:
-                    Form1.Register[data] += 1;
+                    Form1.Register[data]++;
                     Form1.pc++;
                     break;
                 case CType.Dec:
-                    Form1.Register[data] -= 1;
+                    if (Form1.Register[data] == 0)
+                        return '-';
+                    Form1.Register[data]--;
                     Form1.pc++;
                     break;
                 case CType.IfZero:
@@ -65,10 +64,9 @@ namespace Know_How_Computer
                         Form1.pc++;
                     break;
                 case CType.Stop:
-                    Environment.Exit(0);
-                    break;
-
+                    return 'S';
             }
+            return 'W';
         }
 
     }

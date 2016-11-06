@@ -139,16 +139,16 @@ namespace Know_How_Computer
             PickR.ShowDialog();
             int dialogResult = (int)PickR.returnInt;
             Form1.ActiveForm.Enabled = true;
-            MessageBox.Show((dialogResult).ToString());
 
             int sendernum;
-            int RegisterNumber = 0;
+
             if (Int32.TryParse((sender as PictureBox).Name, out sendernum))
             {
                 removeCommand(sendernum);
-                addCommand(stringToType(data), RegisterNumber, sendernum);
+                addCommand(stringToType(data), dialogResult, sendernum);
                 //Todo: Add Text to PictureBox
-                
+
+
                 (sender as PictureBox).Text = data+" "+ Register;
                 
             }
@@ -215,6 +215,8 @@ namespace Know_How_Computer
                 DropPoints[i].Top = pictureBox1.Height * 220 * i / 6423 + (163 * pictureBox1.Height / 665);
                 DropPoints[i].Left = 24;
 
+                DropPoints[i].Paint += new PaintEventHandler(DropPointsDraw);
+
                 DropPoints[i].Name = (i+1).ToString();
                 DropPoints[i].Image = Panel;
                 DropPoints[i].SizeMode = PictureBoxSizeMode.StretchImage;
@@ -238,6 +240,14 @@ namespace Know_How_Computer
                 e.Effect = DragDropEffects.Copy;
             else
                 e.Effect = DragDropEffects.None;
+        }
+
+
+        private void DropPointsDraw(object sender, PaintEventArgs e)
+        {
+            e.Graphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.ClearTypeGridFit;
+            string text = "Text";
+            //SizeF text = e.Graphics.MeasureString
         }
 
     }

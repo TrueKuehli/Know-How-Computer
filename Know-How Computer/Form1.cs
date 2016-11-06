@@ -102,7 +102,7 @@ namespace Know_How_Computer
 
         private void Form1_Load(object sender, EventArgs e)
         {
-        
+            Pen.SizeMode = PictureBoxSizeMode.StretchImage;
         }
 
         private void MouseDrag(object sender, EventArgs e)
@@ -176,6 +176,11 @@ namespace Know_How_Computer
                 DropPoints[i].Left = pictureBox1.Width * 24 / 686;
                 DropPoints[i].Top = pictureBox1.Height * 220 * i / 6423 + (163 * pictureBox1.Height / 665);
             }
+            Pen.Width = pictureBox1.Width * 102 / 686;
+            Pen.Height = pictureBox1.Height * 220 / 6423;
+            Pen.Left = pictureBox1.Width * 24 / 686;
+            Pen.Top = pictureBox1.Height * 220 * pc / 6423 + (163 * pictureBox1.Height / 665);
+
         }
 
         private void Form1_Shown(object sender, EventArgs e)

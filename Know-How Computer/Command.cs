@@ -135,8 +135,8 @@ namespace Know_How_Computer
     {
         const double ratio = 0.05656324582338902147971360381862;
         public int ID;
-        private Image Striker = Properties.Resources.streichholz;
-        PictureBox Box = new PictureBox();
+        private Image Striker = Properties.Resources.Panel;
+        public PictureBox Box = new PictureBox();
         
         public Streichholz(int id)
         {
@@ -145,7 +145,9 @@ namespace Know_How_Computer
             Box.Image = Striker;
             Box.Name = ID.ToString();
             Box.SizeMode = PictureBoxSizeMode.StretchImage;
+            Box.BringToFront();
             
+
         }
         public void Paint(Point pos,Size size)
         {

@@ -83,6 +83,7 @@ namespace Know_How_Computer
             for (int i = 1; i <= 8; i++)
                 regs.Add(new Register());
             Streichholz s = new Streichholz(1);
+            this.Controls.Add(s.Box);
             s.Paint(new Point(0,0),new Size(1024,1024));
         }
 

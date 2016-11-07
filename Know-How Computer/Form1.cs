@@ -21,9 +21,9 @@ namespace Know_How_Computer
     {
         
         public int chosenReg { get; set; }
-        public static int[] Register = new int[8];
+        //public static int[] Register = new int[8];
         public List<Command> Commands = new List<Command>();
-        private List<Register> regs = new List<Register>();
+        public static List<Register> regs = new List<Register>();
         public static int pc =  1; 
 
         public Button[] CommandPresets = new Button[5];
@@ -80,6 +80,10 @@ namespace Know_How_Computer
         private void Form1_Load(object sender, EventArgs e)
         {
             Pen.SizeMode = PictureBoxSizeMode.StretchImage;
+            for (int i = 1; i <= 8; i++)
+                regs.Add(new Register());
+            Streichholz s = new Streichholz(1);
+            s.Paint(new Point(0,0),new Size(1024,1024));
         }
 
         private void MouseDrag(object sender, EventArgs e)
@@ -243,6 +247,8 @@ namespace Know_How_Computer
             Controls.SetChildIndex(pictureBox1, 128);
 
             ResizePen();
+            foreach (Register reg in regs)
+                reg.Resize(new Size(pictureBox1.Width, pictureBox1.Height));
         }
 
         private void ResizePen()
@@ -334,7 +340,7 @@ namespace Know_How_Computer
             {
                 timer1.Enabled = false;
                 button1.Text = "Start";
-                MessageBox.Show("Der PZ steht auf einem leeren Feld!");
+                MessageBox.Show("Der PZ steht auf einem leeren Feld!"+ regs[0].value);
                 pc = 1;
                 ResizePen();
             }

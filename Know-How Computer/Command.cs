@@ -50,17 +50,17 @@ namespace Know_How_Computer
                     Form1.pc = data;
                     break;
                 case CType.Inc:
-                    Form1.Register[data]++;
+                    Form1.regs[data-1].inc();
                     Form1.pc++;
                     break;
                 case CType.Dec:
-                    if (Form1.Register[data] == 0)
+                    if (Form1.regs[data-1].value == 0)
                         return '-';
-                    Form1.Register[data]--;
+                    Form1.regs[data-1].dec();
                     Form1.pc++;
                     break;
                 case CType.IfZero:
-                    if (Form1.Register[data] == 0)
+                    if (Form1.regs[data-1].value == 0)
                         Form1.pc += 2;
                     else
                         Form1.pc++;
@@ -73,22 +73,32 @@ namespace Know_How_Computer
 
     }
 
-    class Register
+    public class Register
     {
-        public static byte ids = 1;
+        public static byte ids = 0;
         public byte ID;
-        public byte value
-        {
-            set {if (value >= 0)
-                    this.value = value;
-                Repaint();
-                }
-        }
+        public int value;
+      
         public Point koords = new Point();
-        private int Width;
-        private int Height;
+        private Size size;
         private Stack<Streichholz> hoelzer = new Stack<Streichholz>();
-        
+
+        public void inc()
+        {
+            if (value >= 0)
+                add();
+            value++;
+            draw();
+                            
+        }
+        public void dec()
+        {
+            if (value >= 0)
+                hoelzer.Pop();
+            value--;
+            draw();
+            
+        }
         
         public Register()
         {
@@ -99,15 +109,23 @@ namespace Know_How_Computer
 
         public void Resize(Size size)
         {
-            this.Width = 102 * size.Width / 686;
-            this.Height = 102 * size.Height / 665;
+            this.size.Width = 102 * size.Width / 686;
+            this.size.Height = 102 * size.Height / 665;
             this.koords.X = 374 * size.Width / 686;
             this.koords.Y = 59 * this.ID + 168 * size.Height / 665;
+            draw();
         }
 
-        public void Repaint()
+        private void add()
         {
-
+            hoelzer.Push(new Streichholz(value + 1));
+        }
+        public void draw()
+        {
+            foreach (Streichholz sh in hoelzer)
+            {
+                sh.Paint(koords,size);
+            }
         }
 
 
@@ -117,19 +135,25 @@ namespace Know_How_Computer
     {
         const double ratio = 0.05656324582338902147971360381862;
         public int ID;
-        Point pos;
-        private int Width;
-        private int Height;
-        private Bitmap Striker = Properties.Resources.streichholz;
+        private Image Striker = Properties.Resources.streichholz;
         PictureBox Box = new PictureBox();
-
-        public Streichholz()
+        
+        public Streichholz(int id)
         {
-            Striker.MakeTransparent(ColorTranslator.FromHtml("#000000"));
+            //Striker.MakeTransparent(ColorTranslator.FromHtml("#000000"));
+            this.ID = id;
+            Box.Image = Striker;
+            Box.Name = ID.ToString();
+            Box.SizeMode = PictureBoxSizeMode.StretchImage;
+            
         }
-        public void Paint()
+        public void Paint(Point pos,Size size)
         {
-
+            double Height = size.Height;
+            Box.Height = size.Height;
+            Box.Width = (int)(Height * ratio);
+            Box.Top = pos.Y;
+            Box.Left = pos.X + Box.Width * ID;
         }
     }
 

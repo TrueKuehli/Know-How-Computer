@@ -14,7 +14,8 @@ namespace Know_How_Computer
         Inc,
         Dec,
         IfZero,
-        Stop
+        Stop,
+        Error
     }
 
     

@@ -80,6 +80,8 @@ namespace Know_How_Computer
                     return CType.IfZero;
                 case "Stop":
                     return CType.Stop;
+                default:
+                    return CType.Error;
             }
             return CType.Stop;
         }

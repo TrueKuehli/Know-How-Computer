@@ -50,6 +50,7 @@ namespace Know_How_Computer
         
         public void addCommand(CType c,int d,int pos)
         {
+            removeCommand(pos);
             Commands.Add(new Command(c,d,pos));
             //Commands[Commands.Count() - 1].id = Commands.IndexOf(Commands[Commands.Count() - 1]);
         }
@@ -83,9 +84,25 @@ namespace Know_How_Computer
             return CType.Stop;
         }
 
+        public void readfile()
+        {
+            string[] lines = System.IO.File.ReadAllLines("../../../programm.txt");
+            string[] tokens = new string[2];
+            int i = 0;
+            foreach (string line in lines)
+            {
+                tokens = line.Split(' ');
+                i++;
+                addCommand(stringToType(tokens[0]), Int32.Parse(tokens[1]), i);
+             
+            }
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Pen.SizeMode = PictureBoxSizeMode.StretchImage;
+            readfile();
         }
 
         private void MouseDrag(object sender, EventArgs e)
@@ -132,7 +149,6 @@ namespace Know_How_Computer
 
             if (Int32.TryParse((sender as PictureBox).Name, out sendernum))
             {
-                removeCommand(sendernum);
                 addCommand(stringToType(data), dialogResult, sendernum);
             }
             (sender as PictureBox).Refresh();

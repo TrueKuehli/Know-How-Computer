@@ -51,12 +51,17 @@ namespace Know_How_Computer
         public void addCommand(CType c,int d,int pos)
         {
             Commands.Add(new Command(c,d,pos));
-            Commands[Commands.Count() - 1].id = Commands.IndexOf(Commands[Commands.Count() - 1]);
+            //Commands[Commands.Count() - 1].id = Commands.IndexOf(Commands[Commands.Count() - 1]);
         }
 
         public void removeCommand(int pos)
         {
-            try { Commands.Remove(Commands[posID(pos)]); }
+            try
+            { //Commands.Remove(Commands[posID(pos)]); }
+
+                Commands[posID(pos)].disabled = true;
+                Commands[posID(pos)].position = -1;
+            }
             catch { };
         }
 

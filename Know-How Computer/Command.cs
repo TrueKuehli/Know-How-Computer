@@ -32,6 +32,7 @@ namespace Know_How_Computer
         {
             this.data = data;
             this.command = command;
+            id = ids++;
         }
 
         public Command(CType command, int data,int pos)
@@ -39,6 +40,7 @@ namespace Know_How_Computer
             this.data = data;
             this.command = command;
             this.position = pos;
+            id = ids++;
 
         }
 

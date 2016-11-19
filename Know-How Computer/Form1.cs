@@ -288,6 +288,10 @@ namespace Know_How_Computer
             Pen.Left = pictureBox1.Width * 165 / 686;
             Pen.Top = pictureBox1.Height * 220 * (pc - 1) / 6423 + (163 * pictureBox1.Height / 665);
         }
+        private void DrawRegs()
+        {
+
+        }
 
         private void DropPointsEnter(object sender, DragEventArgs e)
         {
@@ -392,6 +396,7 @@ namespace Know_How_Computer
                     MessageBox.Show("Datenregister " + Commands[posID(pc)].data + " ist bereits leer!");
                 }
                 ResizePen();
+                DrawRegs();
             }
             for(int i=0; i<8; i++)
             {

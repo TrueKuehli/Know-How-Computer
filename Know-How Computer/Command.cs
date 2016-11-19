@@ -73,11 +73,11 @@ namespace Know_How_Computer
 
     }
 
-    class Register
+    public class Register
     {
         public static byte ids = 1;
         public byte ID;
-        public byte value=0;
+        public int value=0;
         public Point koords = new Point();
         private int Width;
         private int Height;

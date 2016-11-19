@@ -23,11 +23,12 @@ namespace Know_How_Computer
         public int chosenReg { get; set; }
         public static int[] Register = new int[8];
         public List<Command> Commands = new List<Command>();
-        private List<Register> regs = new List<Register>();
+        public List<Register> regs = new List<Register>();
         public static int pc =  1; 
 
         public Button[] CommandPresets = new Button[5];
         public PictureBox[] DropPoints = new PictureBox[21];
+        public Label[] matches = new Label[8];
         
         public Image Panel = Know_How_Computer.Properties.Resources.Panel;
 
@@ -137,16 +138,20 @@ namespace Know_How_Computer
         private void Form1_Resize(object sender, EventArgs e)
         {
             int fSize;
+            int gSize;
             if (pictureBox1.Width > pictureBox1.Height)
             {
                 fSize = 16 * pictureBox1.Height / 665;
+                gSize = 15 * pictureBox1.Height / 665;
             }
             else
             {
                 fSize = 16 * pictureBox1.Width / 686;
+                gSize = 15 * pictureBox1.Width / 686;
             }
 
             Font f = new Font("Arial", fSize);
+            Font g = new Font("Arial", gSize);
 
             for (int i = 0; i < 5; i++)
             {
@@ -179,10 +184,17 @@ namespace Know_How_Computer
             label1.Top = pictureBox1.Height * 434 / 665;
             label1.Font = f;
 
-            foreach (Register reg in regs)
+            for (int i=0; i<8; i++)
             {
-                reg.Resize(new Size(pictureBox1.Width, pictureBox1.Height));
+                matches[i].Left = pictureBox1.Width * 380 / 686;
+                matches[i].Top = pictureBox1.Height * 60 / 665 * i + 180 * pictureBox1.Height / 665;
+                matches[i].Font = g;
             }
+
+            button1.Width = pictureBox1.Width * 147 / 686;
+            button1.Height = pictureBox1.Height * 69 / 665;
+            button1.Left = pictureBox1.Width * 527 / 686;
+            button1.Top = pictureBox1.Height * 362 / 665;
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -240,9 +252,28 @@ namespace Know_How_Computer
 
             DropPoints[20].Image = Know_How_Computer.Properties.Resources.PanelLast;
 
-            Controls.SetChildIndex(pictureBox1, 128);
+            
 
             ResizePen();
+
+            for (int i = 0; i<8; i++)
+            {
+                matches[i] = new Label();
+                matches[i].AutoSize = true;
+                matches[i].Text = "0";
+                matches[i].Left = 380;
+                matches[i].Top = 60*i+180;
+                matches[i].Font = new Font("Arial", 15);
+                matches[i].Name = i.ToString();
+                matches[i].MouseClick += new MouseEventHandler(buttonClick);
+                matches[i].MouseDoubleClick += new MouseEventHandler(buttonRClick);
+                matches[i].BackColor = Color.FromArgb(255, 250, 243, 225);
+
+                this.Controls.Add(matches[i]);
+                
+            }
+
+            Controls.SetChildIndex(pictureBox1, 128);
         }
 
         private void ResizePen()
@@ -357,6 +388,13 @@ namespace Know_How_Computer
                 }
                 ResizePen();
             }
+            for(int i=0; i<8; i++)
+            {
+                try { matches[i].Text = Register[i+1].ToString(); }
+                catch { };
+            }
+          
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -370,6 +408,22 @@ namespace Know_How_Computer
                 timer1.Enabled = false;
                 button1.Text = "Start";
             }
+        }
+
+        private void buttonClick(object sender, EventArgs e)
+        {
+            Register[Int32.Parse((sender as Label).Name) + 1]++;
+            (sender as Label).Text = Register[Int32.Parse((sender as Label).Name) + 1].ToString();
+        }
+
+        private void buttonRClick(object sender, EventArgs e)
+        {
+            Register[Int32.Parse((sender as Label).Name) + 1]-=2;
+            if (Register[Int32.Parse((sender as Label).Name) + 1] < 0)
+            {
+                Register[Int32.Parse((sender as Label).Name) + 1] = 0;
+            }
+            (sender as Label).Text = Register[Int32.Parse((sender as Label).Name) + 1].ToString();
         }
     }
 }

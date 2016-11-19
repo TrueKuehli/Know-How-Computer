@@ -440,7 +440,21 @@ namespace Know_How_Computer
 
         private void buttonClick(object sender, EventArgs e)
         {
-            Register[Int32.Parse((sender as Label).Name) + 1]++;
+            int dialogResult;
+
+            
+                PickRegister PickR = new PickRegister();
+                Form1.ActiveForm.Enabled = false;
+                
+                PickR.Type = "R";
+                
+                PickR.ShowDialog();
+                dialogResult = (int)PickR.returnInt;
+                Form1.ActiveForm.Enabled = true;
+            
+
+            
+            Register[Int32.Parse((sender as Label).Name) + 1] = dialogResult;
             (sender as Label).Text = Register[Int32.Parse((sender as Label).Name) + 1].ToString();
         }
 

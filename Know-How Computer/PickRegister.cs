@@ -27,6 +27,8 @@ namespace Know_How_Computer
                 label1.Text = "Bitte geben Sie das Register ein, auf das der Befehl\nausgeführt werden soll:";
                 numericUpDown1.Maximum = 8;
             }
+            else if (Type == "R")
+                label1.Text = "Bitte geben Sie einen Wert für das Programmregister ein:";
             else
             {
                 label1.Text = "Bitte geben Sie das Programmregister ein, zu welchem\ngesprungen werden soll:";

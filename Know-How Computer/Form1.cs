@@ -86,7 +86,9 @@ namespace Know_How_Computer
 
         public void readfile()
         {
-            string[] lines = System.IO.File.ReadAllLines("../../../programm.txt");
+            OpenFileDialog open = new OpenFileDialog();
+            open.ShowDialog();
+            string[] lines = System.IO.File.ReadAllLines(open.FileName);
             string[] tokens = new string[2];
             int i = 0;
             foreach (string line in lines)

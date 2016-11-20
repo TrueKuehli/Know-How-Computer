@@ -83,13 +83,32 @@ namespace Know_How_Computer
                 default:
                     return CType.Error;
             }
-            return CType.Stop;
+        }
+        public string TypeToString(CType s)
+        {
+            switch (s)
+            {
+                case CType.Jump:
+                    return "S";
+                case CType.Inc:
+                    return "+";
+                case CType.Dec:
+                    return "-";
+                case CType.IfZero:
+                    return "0";
+                case CType.Stop:
+                    return "Stop";
+                default:
+                    return "";
+            }          
         }
 
         public void readfile()
         {
             OpenFileDialog open = new OpenFileDialog();
+            open.Filter = "KnowHowComputer Datei|*.khc";
             open.ShowDialog();
+            
             string[] lines = System.IO.File.ReadAllLines(open.FileName);
             string[] tokens = new string[2];
             int i = 0;
@@ -103,10 +122,44 @@ namespace Know_How_Computer
 
         }
 
+        public void writefile()
+        {
+            SaveFileDialog sFD = new SaveFileDialog();
+            sFD.Filter = "KnowHowComputer Datei|*.khc";
+            sFD.Title = "Ergebnisse speichern unter:";
+            sFD.ShowDialog(); //Zeigt Dialog zum Abspeichern an
+            if (sFD.FileName != "")
+            {
+                try
+                {
+                    string line;
+                    List<string> lines = new List<string>();
+                    int i = 0;
+                    while (posID(++i)!=-1)
+                    {
+                        lines.Add(TypeToString(Commands[posID(i)].command)+" "+ Commands[posID(i)].data.ToString());
+                    }
+                    
+                    System.IO.File.WriteAllLines(sFD.FileName, lines); 
+                    
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Ausnahme trat auf: \n" + e, "Fehler", MessageBoxButtons.OK); //Fehlermeldung für unbehandelten Fehler
+                }
+            }
+            else //Fehlermeldung bei leerem Dateinamen
+            {
+                MessageBox.Show("Es wurde kein Dateiname eingegeben.", "Fehlender Dateiname", MessageBoxButtons.OK);
+            };
+
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Pen.SizeMode = PictureBoxSizeMode.StretchImage;
             readfile();
+            writefile();
         }
 
         private void MouseDrag(object sender, EventArgs e)

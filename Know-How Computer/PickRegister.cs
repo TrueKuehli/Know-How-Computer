@@ -28,7 +28,11 @@ namespace Know_How_Computer
                 numericUpDown1.Maximum = 8;
             }
             else if (Type == "R")
+            {
                 label1.Text = "Bitte geben Sie einen Wert für das Programmregister ein:";
+                numericUpDown1.Minimum = 0;
+                numericUpDown1.Maximum = 4096;
+            }
             else
             {
                 label1.Text = "Bitte geben Sie das Programmregister ein, zu welchem\ngesprungen werden soll:";

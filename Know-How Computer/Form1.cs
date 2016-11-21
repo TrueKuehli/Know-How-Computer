@@ -295,15 +295,6 @@ namespace Know_How_Computer
             button1.Left = pictureBox1.Width * 527 / 686;
             button1.Top = pictureBox1.Height * 362 / 665;
 
-            loadButton.Left = 20;   //Todo: Werte eintragen
-            loadButton.Top = 20;    //
-            loadButton.Width = 20;  //
-            loadButton.Height = 20; //
-
-            saveButton.Left = 10;   //Todo: Werte eintragen
-            saveButton.Top = 10;    //
-            saveButton.Width = 10;  //
-            saveButton.Height = 10; //
         }
 
         private void Form1_Shown(object sender, EventArgs e)
@@ -382,23 +373,7 @@ namespace Know_How_Computer
                 
             }
 
-            loadButton = new Button();
-            loadButton.Text = "Laden";
-            loadButton.Left = 20;   //Todo: Werte eintragen
-            loadButton.Top = 20;    //
-            loadButton.Width = 20;  //
-            loadButton.Height = 20; //
-            loadButton.MouseClick += new MouseEventHandler(readfile);
-            this.Controls.Add(loadButton);
 
-            saveButton = new Button();
-            saveButton.Text = "Speichern";
-            saveButton.Left = 10;   //Todo: Werte eintragen
-            saveButton.Top = 10;    //
-            saveButton.Width = 10;  //
-            saveButton.Height = 10; //
-            loadButton.MouseClick += new MouseEventHandler(writefile);
-            this.Controls.Add(loadButton);
 
         
 
@@ -573,6 +548,22 @@ namespace Know_How_Computer
                 Register[Int32.Parse((sender as Label).Name) + 1] = 0;
             }
             (sender as Label).Text = Register[Int32.Parse((sender as Label).Name) + 1].ToString();
+        }
+
+
+        private void öffnenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            readfile(null, null);
+        }
+
+        private void speichernUnterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            writefile(null, null);
+        }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            menuStrip1.Visible = (e.Location.Y < 20) ? true : false;
         }
     }
 }

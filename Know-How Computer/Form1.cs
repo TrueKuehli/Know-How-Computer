@@ -382,7 +382,7 @@ namespace Know_How_Computer
             //loadButton.Click += new MouseEventHandler( [Hier die Funktion hinzufügen, muss sender und MouseEventArgs haben] );
             this.Controls.Add(loadButton);
 
-        }
+        
 
 
             Controls.SetChildIndex(pictureBox1, 128);

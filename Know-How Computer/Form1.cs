@@ -106,7 +106,7 @@ namespace Know_How_Computer
             }          
         }
 
-        public void readfile()
+        public void readfile(object sender, MouseEventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
             open.Filter = "KnowHowComputer Datei|*.khc";
@@ -125,7 +125,7 @@ namespace Know_How_Computer
 
         }
 
-        public void writefile()
+        public void writefile(object sender, MouseEventArgs h)
         {
             SaveFileDialog sFD = new SaveFileDialog();
             sFD.Filter = "KnowHowComputer Datei|*.khc";
@@ -161,8 +161,7 @@ namespace Know_How_Computer
         private void Form1_Load(object sender, EventArgs e)
         {
             Pen.SizeMode = PictureBoxSizeMode.StretchImage;
-            readfile();
-            writefile();
+           
         }
 
         private void MouseDrag(object sender, EventArgs e)
@@ -370,7 +369,7 @@ namespace Know_How_Computer
             loadButton.Top = 20;    //
             loadButton.Width = 20;  //
             loadButton.Height = 20; //
-            //loadButton.Click += new MouseEventHandler( [Hier die Funktion hinzufügen, muss sender und MouseEventArgs haben] );
+            loadButton.MouseClick += new MouseEventHandler(readfile);
             this.Controls.Add(loadButton);
 
             saveButton = new Button();
@@ -379,7 +378,7 @@ namespace Know_How_Computer
             saveButton.Top = 10;    //
             saveButton.Width = 10;  //
             saveButton.Height = 10; //
-            //loadButton.Click += new MouseEventHandler( [Hier die Funktion hinzufügen, muss sender und MouseEventArgs haben] );
+            loadButton.MouseClick += new MouseEventHandler(writefile);
             this.Controls.Add(loadButton);
 
         

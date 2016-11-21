@@ -110,20 +110,39 @@ namespace Know_How_Computer
         {
             OpenFileDialog open = new OpenFileDialog();
             open.Filter = "KnowHowComputer Datei|*.khc";
+            open.Title = "KnowHowComtuter Datei laden:";
             open.ShowDialog();
-            
-            string[] lines = System.IO.File.ReadAllLines(open.FileName);
-            string[] tokens = new string[2];
-            int i = 0;
-            foreach (string line in lines)
+            if (open.FileName != "")
             {
-                tokens = line.Split(' ');
-                i++;
-                addCommand(stringToType(tokens[0]), Int32.Parse(tokens[1]), i);
-             
+                try
+                {
+                    string[] lines = System.IO.File.ReadAllLines(open.FileName);
+                    string[] tokens = new string[2];
+                    int i = 0;
+                    foreach (string line in lines)
+                    {
+                        tokens = line.Split(' ');
+                        i++;
+                        addCommand(stringToType(tokens[0]), Int32.Parse(tokens[1]), i);
+
+                    }
+                }
+                catch (Exception h)
+                {
+                    MessageBox.Show("Ausnahme trat auf: \n" + e, "Fehler", MessageBoxButtons.OK); //Fehlermeldung für unbehandelten Fehler
+                }
             }
+            else //Fehlermeldung bei leerem Dateinamen
+            {
+                MessageBox.Show("Es wurde kein Dateiname eingegeben.", "Fehlender Dateiname", MessageBoxButtons.OK);
+            };
 
         }
+        
+             
+           
+
+        
 
         public void writefile(object sender, MouseEventArgs h)
         {
@@ -135,7 +154,6 @@ namespace Know_How_Computer
             {
                 try
                 {
-                    string line;
                     List<string> lines = new List<string>();
                     int i = 0;
                     while (posID(++i)!=-1)

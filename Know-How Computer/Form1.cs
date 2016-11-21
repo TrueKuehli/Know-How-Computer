@@ -29,7 +29,10 @@ namespace Know_How_Computer
         public Button[] CommandPresets = new Button[5];
         public PictureBox[] DropPoints = new PictureBox[21];
         public Label[] matches = new Label[8];
-        
+        public Button saveButton = new Button();
+        public Button loadButton = new Button();
+
+
         public Image Panel = Know_How_Computer.Properties.Resources.Panel;
 
         public Form1()
@@ -273,13 +276,23 @@ namespace Know_How_Computer
             button1.Height = pictureBox1.Height * 69 / 665;
             button1.Left = pictureBox1.Width * 527 / 686;
             button1.Top = pictureBox1.Height * 362 / 665;
+
+            loadButton.Left = 20;   //Todo: Werte eintragen
+            loadButton.Top = 20;    //
+            loadButton.Width = 20;  //
+            loadButton.Height = 20; //
+
+            saveButton.Left = 10;   //Todo: Werte eintragen
+            saveButton.Top = 10;    //
+            saveButton.Width = 10;  //
+            saveButton.Height = 10; //
         }
 
         private void Form1_Shown(object sender, EventArgs e)
         {
             trackBar1.Value = 1;
             ((Control)pictureBox1).AllowDrop = true;
-            
+
             for (int i = 0; i < 5; i++)
             {
                 CommandPresets[i] = new Button();
@@ -316,7 +329,7 @@ namespace Know_How_Computer
 
                 DropPoints[i].Paint += new PaintEventHandler(DropPointsDraw);
 
-                DropPoints[i].Name = (i+1).ToString();
+                DropPoints[i].Name = (i + 1).ToString();
                 DropPoints[i].Image = Panel;
                 DropPoints[i].SizeMode = PictureBoxSizeMode.StretchImage;
                 DropPoints[i].AllowDrop = true;
@@ -326,7 +339,7 @@ namespace Know_How_Computer
                 DropPoints[i].Click += new EventHandler(DropPointDel);
 
                 this.Controls.Add(DropPoints[i]);
-            }
+            } 
 
             DropPoints[20].Image = Know_How_Computer.Properties.Resources.PanelLast;
 
@@ -350,6 +363,27 @@ namespace Know_How_Computer
                 this.Controls.Add(matches[i]);
                 
             }
+
+            loadButton = new Button();
+            loadButton.Text = "Laden";
+            loadButton.Left = 20;   //Todo: Werte eintragen
+            loadButton.Top = 20;    //
+            loadButton.Width = 20;  //
+            loadButton.Height = 20; //
+            //loadButton.Click += new MouseEventHandler( [Hier die Funktion hinzufügen, muss sender und MouseEventArgs haben] );
+            this.Controls.Add(loadButton);
+
+            saveButton = new Button();
+            saveButton.Text = "Speichern";
+            saveButton.Left = 10;   //Todo: Werte eintragen
+            saveButton.Top = 10;    //
+            saveButton.Width = 10;  //
+            saveButton.Height = 10; //
+            //loadButton.Click += new MouseEventHandler( [Hier die Funktion hinzufügen, muss sender und MouseEventArgs haben] );
+            this.Controls.Add(loadButton);
+
+        }
+
 
             Controls.SetChildIndex(pictureBox1, 128);
         }

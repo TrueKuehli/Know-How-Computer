@@ -36,7 +36,7 @@
             // 
             // numericUpDown1
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(12, 44);
+            this.numericUpDown1.Location = new System.Drawing.Point(12, 38);
             this.numericUpDown1.Maximum = new decimal(new int[] {
             8,
             0,
@@ -79,7 +79,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 114);
+            this.ClientSize = new System.Drawing.Size(284, 108);
             this.ControlBox = false;
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label1);

@@ -112,6 +112,7 @@ namespace Know_How_Computer
             open.Filter = "KnowHowComputer Datei|*.khc";
             open.Title = "KnowHowComtuter Datei laden:";
             open.ShowDialog();
+            if (DialogResult==DialogResult.OK)
             if (open.FileName != "")
             {
                 try
